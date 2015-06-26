@@ -2,6 +2,7 @@ defmodule Stack.Stash do
   use GenServer
 
   def start_link(current_value) do
+    IO.puts "Starting Stash with #{inspect current_value}"
     {:ok, _pid} = GenServer.start_link(__MODULE__, current_value)
   end
 
@@ -20,7 +21,8 @@ defmodule Stack.Stash do
   end
 
   def handle_cast({:save_value, value}, _current_value) do
-    {:no_reply, value}
+    IO.puts "Stash saved #{inspect value}"
+    {:noreply, value}
   end
 
 end
